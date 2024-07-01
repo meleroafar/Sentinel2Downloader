@@ -14,7 +14,7 @@ This repository provides tools to download Sentinel-2 satellite images from the 
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/yourusername/Sentinel2Downloader.git
+   git clone https://github.com/meleroalfar/Sentinel2Downloader.git
    cd Sentinel2Downloader
 2. **Install required packages:**
   pip install -r requirements.txt
