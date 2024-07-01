@@ -1,18 +1,14 @@
-"""
-Utility functions used by example notebooks
-"""
+
 import sys        
-sys.path.append('/home/tele/notebook-samples/sentinelhub')
 from typing import Any, Optional, Tuple
 from sentinelhub import (SHConfig, DataCollection, SentinelHubCatalog, SentinelHubRequest, BBox, bbox_to_dimensions, CRS, MimeType, Geometry)
 import numpy as np
 import os
 import datetime
-import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 from creds import *
-
+import argparse
 
 
     
@@ -35,32 +31,32 @@ def get_access_token(username: str, password: str) -> str:
 
 def download_Isat(start_date, end_date, north, south, east, west, data_collection, directory_save):
 	"""
-	Permite descargar imágenes satelitales de Copernicus Data Space Ecosystem.
+	This function downloads Sentinel-2 images from the Copernicus Data Space Ecosystem for the specified geographical area and time range, saving them in the specified directory.
 
 	Args:
-	start_date (str): Fecha de inicio en formato 'YYYY-MM-DD'.
-	end_date (str): Fecha de fin en formato 'YYYY-MM-DD'.
-	north (float): Coordenada norte del área de interés.
-	south (float): Coordenada sur del área de interés.
-	east (float): Coordenada este del área de interés.
-	west (float): Coordenada oeste del área de interés.
-	data_collection (str): Nombre de la colección de datos (e.g., "SENTINEL-2").
-	directory_save (str): Directorio donde se guardarán las imágenes descargadas.
-	username (str): Nombre de usuario para la autenticación.
-	password (str): Contraseña para la autenticación.
+	start_date: Start date of the time range for downloading images in 'YYYY-MM-DD' format.
+	end_date: End date of the time range for downloading images in 'YYYY-MM-DD' format.
+	north: Northern coordinate of the area of interest (latitude).
+	south: Southern coordinate of the area of interest (latitude).
+	east: Eastern coordinate of the area of interest (longitude).
+	west: Western coordinate of the area of interest (longitude).
+	data_collection: Name of the data collection, e.g., "SENTINEL-2".
+	directory_save: Directory where the downloaded images will be saved.
 
 	Example:
-	download_Isat("2023-04-01", "2023-05-01", -34.81, -34.82, -57.8900, -57.8961, "SENTINEL-2", "/media/tele/Seagate Expansion Drive/S2_timeSeries_2023/", "user", "pass")
+	download_Isat("2023-04-01", "2023-05-01", -34.81, -34.82, -57.8900, -57.8961, "SENTINEL-2", "/directory_example/S2_timeSeries/", "user", "pass")
 	"""
+	print(f"Save directory: {directory_save}")
+	print(f"Start date: {start_date}")
+	print(f"End date: {end_date}")
+	print(f"Data collection: {data_collection}")
+	print(f"North: {north}, South: {south}, East: {east}, West: {west}")
 	try:
-		# Validación de fechas
-		#datetime.strptime(start_date, '%Y-%m-%d')
-		#datetime.strptime(end_date, '%Y-%m-%d')
 
-		# Construcción del área de interés (AOI)
+		# Construct the area of interest (AOI)
 		aoi = f"POLYGON(({west} {north}, {east} {north}, {east} {south}, {west} {south}, {west} {north}))"
 
-		# Solicitud para obtener los datos del catálogo
+		# Request to obtain data from the catalog
 		url = (
 		   f"https://catalogue.dataspace.copernicus.eu/odata/v1/Products?"
 		   f"$filter=Collection/Name eq '{data_collection}' and OData.CSC.Intersects(area=geography'SRID=4326;{aoi}') "
@@ -70,12 +66,13 @@ def download_Isat(start_date, end_date, north, south, east, west, data_collectio
 		response.raise_for_status()
 		json_data = response.json()
 
-		# Creación de un DataFrame con los datos obtenidos
+		# Create a DataFrame with the obtained data
 		df = pd.DataFrame.from_dict(json_data["value"])
 
-		# Descarga de los productos
+		# Download the products
 		for index, row in df.iterrows():
 			if 'L1C' in row['Name']:
+				print("Downloading",row['Name'])
 				access_token = get_access_token(username, password)
 				product_url = f"https://zipper.dataspace.copernicus.eu/odata/v1/Products({row['Id']})/$value"
 				headers = {"Authorization": f"Bearer {access_token}"}
@@ -87,9 +84,22 @@ def download_Isat(start_date, end_date, north, south, east, west, data_collectio
 						for chunk in r.iter_content(chunk_size=8192):
 							if chunk:
 								file.write(chunk)
-		print("Descarga completada.")
+		print("Download completed.")
 	except Exception as e:
 		print(f"Error: {e}")
 
 	return
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Script to download Sentinel-2 data.')
+    parser.add_argument('--directory_save', type=str, required=True, help='Directory where the data will be saved.')
+    parser.add_argument('--start_date', type=str, required=True, help='Start date (YYYY-MM-DD).')
+    parser.add_argument('--end_date', type=str, required=True, help='End date (YYYY-MM-DD).')
+    parser.add_argument('--data_collection', type=str, required=True, help='Data collection.')
+    parser.add_argument('--north', type=float, required=True, help='North coordinate.')
+    parser.add_argument('--south', type=float, required=True, help='South coordinate.')
+    parser.add_argument('--east', type=float, required=True, help='East coordinate.')
+    parser.add_argument('--west', type=float, required=True, help='West coordinate.')
+
+    args = parser.parse_args()
+    download_Isat(args.start_date, args.end_date, args.north, args.south, args.east, args.west, args.data_collection,args.directory_save)
