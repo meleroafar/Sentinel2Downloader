@@ -47,19 +47,12 @@ The next function downloads Sentinel-2 images from the Copernicus Data Space Eco
    ```
 Parameters:
 
-start_date: Start date of the time range for downloading images in 'YYYY-MM-DD' format.
-
-end_date: End date of the time range for downloading images in 'YYYY-MM-DD' format.
-
-north: Northern coordinate of the area of interest (latitude).
-
-south: Southern coordinate of the area of interest (latitude).
-
-east: Eastern coordinate of the area of interest (longitude).
-
-west: Western coordinate of the area of interest (longitude).
-
-data_collection: Name of the data collection, e.g., "SENTINEL-2".
-
-directory_save: Directory where the downloaded images will be saved.
+   start_date: Start date of the time range for downloading images in 'YYYY-MM-DD' format.
+   end_date: End date of the time range for downloading images in 'YYYY-MM-DD' format.
+   north: Northern coordinate of the area of interest (latitude).
+   south: Southern coordinate of the area of interest (latitude).
+   east: Eastern coordinate of the area of interest (longitude).
+   west: Western coordinate of the area of interest (longitude).
+   data_collection: Name of the data collection, e.g., "SENTINEL-2".
+   directory_save: Directory where the downloaded images will be saved.
 
