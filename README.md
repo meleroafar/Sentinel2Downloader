@@ -37,9 +37,13 @@ Once you have an account, you will need to obtain an access token. Here are the 
 ## Usage
 Once you have an account, you will need to obtain an access token. Here are the steps to do it:
 Replace YOUR_USERNAME and YOUR_PASSWORD with your Copernicus Data Space Ecosystem login credentials in the creds.py file. This is equivalent to entering your username and password into the Copernicus Browser application. Ensure you keep them secure and do not share them with others.
+
 Navigate to the cloned repository directory:
 
-Use the download_Isat function with the following parameters:
+Use the download_Isat function with its parameters:
+```sh
+python utils.py --directory_save "/home/rafael/" --start_date "2023-08-01" --end_date "2023-08-02" --data_collection "SENTINEL-2" --north -34.81 --south -34.82 --east -57.8900 --west -57.8961
+
 Parameters:
 start_date: Start date of the time range for downloading images in 'YYYY-MM-DD' format.
 end_date: End date of the time range for downloading images in 'YYYY-MM-DD' format.
