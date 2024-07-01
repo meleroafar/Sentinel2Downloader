@@ -44,7 +44,7 @@ def download_Isat(start_date, end_date, north, south, east, west, data_collectio
 	directory_save: Directory where the downloaded images will be saved.
 
 	Example:
-	download_Isat("2023-04-01", "2023-05-01", -34.81, -34.82, -57.8900, -57.8961, "SENTINEL-2", "/directory_example/S2_timeSeries/", "user", "pass")
+	download_Isat("2023-04-01", "2023-05-01", -34.81, -34.82, -57.8900, -57.8961, "SENTINEL-2", "/directory_example/S2_timeSeries/")
 	"""
 	print(f"Save directory: {directory_save}")
 	print(f"Start date: {start_date}")
