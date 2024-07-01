@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository provides tools to download Sentinel-2 satellite images from the Copernicus Data Space Ecosystem using Python.
+This repository provides tools to download Sentinel-2, Level 1C, satellite images from the Copernicus Data Space Ecosystem using Python.
 
 ## Table of Contents
 
