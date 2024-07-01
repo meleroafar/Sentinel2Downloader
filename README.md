@@ -37,6 +37,7 @@ Once you have an account, you will need to obtain an access token. Here are the 
 ## Usage
 Once you have an account, you will need to obtain an access token. Here are the steps to do it:
 Replace YOUR_USERNAME and YOUR_PASSWORD with your Copernicus Data Space Ecosystem login credentials in the creds.py file. This is equivalent to entering your username and password into the Copernicus Browser application. Ensure you keep them secure and do not share them with others.
+Navigate to the cloned repository directory:
 
 Use the download_Isat function with the following parameters:
 Parameters:
