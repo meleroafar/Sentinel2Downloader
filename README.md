@@ -37,7 +37,7 @@ Navigate to the cloned repository directory:
 The next function downloads Sentinel-2 images from the Copernicus Data Space Ecosystem for the specified geographical area and time range, saving them in the specified directory. Adjust the parameters according that you need.
 
    ```sh
-   python utils.py --directory_save "/meleroalfar_directory/" --start_date "2023-08-01" --end_date "2023-08-02" --data_collection "SENTINEL-2" --north -34.81 --south -34.82 --east -57.8900 --west -57.8961
+   python utils.py --directory_save "/directory_example/S2_timeSeries/" --start_date "2023-08-01" --end_date "2023-08-02" --data_collection "SENTINEL-2" --north -34.81 --south -34.82 --east -57.8900 --west -57.8961
    ```
 Parameters:
 
