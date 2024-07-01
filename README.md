@@ -46,12 +46,20 @@ The next function downloads Sentinel-2 images from the Copernicus Data Space Eco
    python utils.py --directory_save "/meleroalfar_directory/" --start_date "2023-08-01" --end_date "2023-08-02" --data_collection "SENTINEL-2" --north -34.81 --south -34.82 --east -57.8900 --west -57.8961
    ```
 Parameters:
+
 start_date: Start date of the time range for downloading images in 'YYYY-MM-DD' format.
+
 end_date: End date of the time range for downloading images in 'YYYY-MM-DD' format.
+
 north: Northern coordinate of the area of interest (latitude).
+
 south: Southern coordinate of the area of interest (latitude).
+
 east: Eastern coordinate of the area of interest (longitude).
+
 west: Western coordinate of the area of interest (longitude).
+
 data_collection: Name of the data collection, e.g., "SENTINEL-2".
+
 directory_save: Directory where the downloaded images will be saved.
 
