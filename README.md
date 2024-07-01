@@ -24,7 +24,7 @@ This repository provides tools to download Sentinel-2 satellite images from the 
 
 
 
-First, you need to request access to the Copernicus Data Space Ecosystem through the API at https://dataspace.copernicus.eu/. If you have been a user of the Copernicus Open Access Hub, you can use your existing credentials. To download products from the Copernicus Data Space Ecosystem catalog using the OData and OpenSearch API, all users are required to have an access token. After you have registered, this token can easily be generated using a Python script.
+First, you need to request access to the Copernicus Data Space Ecosystem through the API at https://dataspace.copernicus.eu/. If you have been a user of the Copernicus Open Access Hub, you can use your existing credentials. To download products from the Copernicus Data Space Ecosystem catalog using the API, all users are required to have an access token. After you have registered, this token can easily be generated using a Python script.
 
 
 To download products from the Copernicus Open Access Hub using the token-based authentication API, follow these steps:
