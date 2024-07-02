@@ -1,15 +1,13 @@
-
-import sys        
-from typing import Any, Optional, Tuple
-from sentinelhub import (SHConfig, DataCollection, SentinelHubCatalog, SentinelHubRequest, BBox, bbox_to_dimensions, CRS, MimeType, Geometry)
+import argparse
+import datetime
 import numpy as np
 import os
-import datetime
 import pandas as pd
 import requests
+import sys
+from typing import Any, Optional, Tuple
+from sentinelhub import (SHConfig, DataCollection, SentinelHubCatalog, SentinelHubRequest, BBox, bbox_to_dimensions, CRS, MimeType, Geometry)
 from creds import *
-import argparse
-
 
     
 # Import credentials
