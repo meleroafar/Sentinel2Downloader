@@ -9,6 +9,7 @@ from typing import Any, Optional, Tuple
 from sentinelhub import (SHConfig, DataCollection, SentinelHubCatalog, SentinelHubRequest, BBox, bbox_to_dimensions, CRS, MimeType, Geometry)
 from creds import *
 
+
     
 # Import credentials
 def get_access_token(username: str, password: str) -> str:
@@ -27,7 +28,7 @@ def get_access_token(username: str, password: str) -> str:
     return r.json()["access_token"]
     
 
-def download_Isat(start_date, end_date, north, south, east, west, data_collection, directory_save):
+def download_Isat(start_date, end_date, north, south, east, west, data_collection,level, directory_save):
 	"""
 	This function downloads Sentinel-2 images from the Copernicus Data Space Ecosystem for the specified geographical area and time range, saving them in the specified directory.
 
@@ -39,15 +40,17 @@ def download_Isat(start_date, end_date, north, south, east, west, data_collectio
 	east: Eastern coordinate of the area of interest (longitude).
 	west: Western coordinate of the area of interest (longitude).
 	data_collection: Name of the data collection, e.g., "SENTINEL-2".
+	level: 'L1C' or 'L2A'
 	directory_save: Directory where the downloaded images will be saved.
 
 	Example:
-	download_Isat("2023-04-01", "2023-05-01", -34.81, -34.82, -57.8900, -57.8961, "SENTINEL-2", "/directory_example_S2_timeSeries/")
+	download_Isat("2023-04-01", "2023-05-01", -34.81, -34.82, -57.8900, -57.8961, "SENTINEL-2", "L1C","/directory_example_S2_timeSeries/")
 	"""
 	print(f"Save directory: {directory_save}")
 	print(f"Start date: {start_date}")
 	print(f"End date: {end_date}")
 	print(f"Data collection: {data_collection}")
+	print(f"Level: {level}")
 	print(f"North: {north}, South: {south}, East: {east}, West: {west}")
 	try:
 
@@ -69,7 +72,7 @@ def download_Isat(start_date, end_date, north, south, east, west, data_collectio
 
 		# Download the products
 		for index, row in df.iterrows():
-			if 'L1C' in row['Name']:
+			if level in row['Name']:
 				print("Downloading",row['Name'])
 				access_token = get_access_token(username, password)
 				product_url = f"https://zipper.dataspace.copernicus.eu/odata/v1/Products({row['Id']})/$value"
@@ -89,15 +92,18 @@ def download_Isat(start_date, end_date, north, south, east, west, data_collectio
 	return
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Script to download Sentinel-2 data.')
-    parser.add_argument('--directory_save', type=str, required=True, help='Directory where the data will be saved.')
-    parser.add_argument('--start_date', type=str, required=True, help='Start date (YYYY-MM-DD).')
-    parser.add_argument('--end_date', type=str, required=True, help='End date (YYYY-MM-DD).')
-    parser.add_argument('--data_collection', type=str, required=True, help='Data collection.')
-    parser.add_argument('--north', type=float, required=True, help='North coordinate.')
-    parser.add_argument('--south', type=float, required=True, help='South coordinate.')
-    parser.add_argument('--east', type=float, required=True, help='East coordinate.')
-    parser.add_argument('--west', type=float, required=True, help='West coordinate.')
+	parser = argparse.ArgumentParser(description='Script to download Sentinel-2 data.')
+	parser.add_argument('--directory_save', type=str, required=True, help='Directory where the data will be saved.')
+	parser.add_argument('--start_date', type=str, required=True, help='Start date (YYYY-MM-DD).')
+	parser.add_argument('--end_date', type=str, required=True, help='End date (YYYY-MM-DD).')
+	parser.add_argument('--data_collection', type=str, required=True, help='Data collection.')
+	parser.add_argument('--north', type=float, required=True, help='North coordinate.')
+	parser.add_argument('--south', type=float, required=True, help='South coordinate.')
+	parser.add_argument('--east', type=float, required=True, help='East coordinate.')
+	parser.add_argument('--west', type=float, required=True, help='West coordinate.')
+	parser.add_argument('--level', type=str, required=True, help='Level products.')
+	args = parser.parse_args()
+	download_Isat(args.start_date, args.end_date, args.north, args.south, args.east, args.west, args.data_collection, args.level,args.directory_save)
 
     args = parser.parse_args()
     download_Isat(args.start_date, args.end_date, args.north, args.south, args.east, args.west, args.data_collection,args.directory_save)
