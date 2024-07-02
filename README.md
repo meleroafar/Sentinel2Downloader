@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository provides tools to download Sentinel-2, Level 1C, satellite images from the Copernicus Data Space Ecosystem using Python.
+This repository provides tools to download Sentinel-2 (Level 1C and 2A) satellite images from the Copernicus Data Space Ecosystem using Python.
 
 ## Table of Contents
 
@@ -47,6 +47,7 @@ Parameters:
    - south: Southern coordinate of the area of interest (latitude).
    - east: Eastern coordinate of the area of interest (longitude).
    - west: Western coordinate of the area of interest (longitude).
-   - data_collection: Name of the data collection, e.g., "SENTINEL-2".
+   - data_collection: Name of the data collection, "SENTINEL-2".
+   - level: 'L1C' or 'L2A' for Top-Of-Atmosphere (TOA) Level-1C or Bottom-Of-Atmosphere (BOA) products, respectly
    - directory_save: Directory where the downloaded images will be saved.
 
