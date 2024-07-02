@@ -14,8 +14,9 @@ This repository provides tools to download Sentinel-2 (Level 1C and 2A) satellit
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/meleroalfar/Sentinel2Downloader.git
+   git clone https://github.com/meleroafar/Sentinel2Downloader.git
    cd Sentinel2Downloader
+   ```
 2. **Install required packages:**
    ```sh
    pip install -r requirements.txt
