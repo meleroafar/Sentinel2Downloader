@@ -105,5 +105,4 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 	download_Isat(args.start_date, args.end_date, args.north, args.south, args.east, args.west, args.data_collection, args.level,args.directory_save)
 
-    args = parser.parse_args()
-    download_Isat(args.start_date, args.end_date, args.north, args.south, args.east, args.west, args.data_collection,args.directory_save)
+
