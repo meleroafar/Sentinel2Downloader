@@ -48,6 +48,6 @@ Parameters:
    - east: Eastern coordinate of the area of interest (longitude).
    - west: Western coordinate of the area of interest (longitude).
    - data_collection: Name of the data collection, "SENTINEL-2".
-   - level: 'L1C' or 'L2A' for Top-Of-Atmosphere (TOA) Level-1C or Bottom-Of-Atmosphere (BOA) products, respectly
+   - level: 'L1C' or 'L2A' for Top-Of-Atmosphere (TOA) or Bottom-Of-Atmosphere (BOA) products, respectively
    - directory_save: Directory where the downloaded images will be saved.
 
