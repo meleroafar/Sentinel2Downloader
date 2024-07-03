@@ -22,16 +22,10 @@ This repository provides tools to download Sentinel-2 (Level 1C and 2A) satellit
    pip install -r requirements.txt
 
 ## Activate Copernicus Data Space Ecosystem
-
-
-
 First, you need to request access to the Copernicus Data Space Ecosystem through the API at https://dataspace.copernicus.eu/. If you have been a user of the Copernicus Open Access Hub, you can use your existing credentials. To download products from the Copernicus Data Space Ecosystem catalog via the API, every user must have an access token. Once registered, you can generate this token easily using a Python script. If you don't have an account yet, you can sign up at the registration portal.
 
-Obtain the access token:
-Once you have an account, you will need to obtain an access token. Here are the steps to do it:
 ## Usage
-Once you have an account, you will need to obtain an access token. Here are the steps to do it:
-Replace YOUR_USERNAME and YOUR_PASSWORD with your Copernicus Data Space Ecosystem login credentials in the creds.py file. This is equivalent to entering your username and password into the Copernicus Browser application. Ensure you keep them secure and do not share them with others.
+Once you have an account, you will need to obtain an access token. To do it, replace YOUR_USERNAME and YOUR_PASSWORD with your Copernicus Data Space Ecosystem login credentials in the creds.py file. This is equivalent to entering your username and password into the Copernicus Browser application. Ensure you keep them secure and do not share them with others.
 
 Navigate to the cloned repository directory:
 
